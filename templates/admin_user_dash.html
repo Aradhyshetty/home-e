@@ -1,0 +1,72 @@
+{% extends 'Dashboard.html' %}
+
+{% block style %}
+body {
+    position: relative;
+    margin-left: 101px;
+    padding: 2rem 0 0 6.75rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s;
+    padding:20px;
+    background-color:rgb(222, 237, 255);
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 576px) {
+    table {
+        font-size: 12px;
+    }
+}
+
+{% endblock style %}
+
+
+{% block body %}
+<div class="container">
+    <h2>User Details</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in user  %}
+            
+            
+            <tr>
+                <td>{{u.name}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.ph_no}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock body  %}
+
+</html>
