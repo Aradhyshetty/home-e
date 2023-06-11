@@ -1,0 +1,389 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+  <title>Card Example</title>
+    <link rel="stylesheet" href="{% static "/style.css" %}">
+  <style>
+    .card {
+      width: 90%;
+      max-width: 500px;
+      margin: 10vh auto;
+      background-color: #b2d7ea;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+  
+      .card:hover {
+        transform: translateY(-5px);
+        background-color: #B0DAFF
+      }
+
+    @media (max-width: 576px) {
+      .card {
+        width: 100%;
+      }
+    }
+
+      .card-img-top
+      {
+        width:609px;
+        height:450px;
+      }
+      .card-container1 {
+        width: 96%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card1 {
+        width: 370px;
+        margin: 20px;
+        background-color: #F7F7F7;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .card1:hover {
+        transform: translateY(-5px);
+    }
+
+    .card1-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card1-body {
+        padding: 20px;
+    }
+
+    .card1-title {
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .card1-text {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .btn1-book {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn1-book:hover {
+        background-color: #2980b9;
+    }
+
+    @media (max-width: 576px) {
+        .card1 {
+            width: 90%;
+        }
+    }
+      /* Style for the popup */
+      .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background-color: #fff;
+      width: 80%;
+      max-width: 650px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+   
+.close-btn {
+    position: absolute;
+    /* top: -20px; */
+    margin-top: -54px;
+    right: 40px;
+    font-size: 29px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+    {% block style %}
+    
+    {% endblock style %}
+  </style>
+</head>
+
+<body background-color: #B0DAFF>
+    <nav class="navbar navbar-expand-lg navbar-custom   navbar-light" style="background-color:#ffffff; margin-top: -100px;">
+        <div class="container-fluid" style=" margin-bottom: 5px; margin-top: 5px;">
+          <a class="navbar-brand" href="/" style="margin: 0px; margin-right: -60px;">
+            <img src="{% static './img/logo.png' %}" class="logo_img" alt="Bootstrap"  >
+            Home-E Services
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/" name="home" style="font-family: 'Libre Baskerville', serif;;">Home</a>
+              </li>
+              <li class="nav-item">
+          
+                <a class="nav-link active" href="/home" style="font-family: 'Libre Baskerville', serif;" >About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active " href="/#service" style="font-family: 'Libre Baskerville', serif;">Services</a>
+              </li>
+              {% if nav == 0 %}
+              <li class="nav-item">
+                <a class="nav-link active " href="/login" style="font-family: 'Libre Baskerville', serif;">Login</a>
+              </li>
+              <li class="nav-item dropdown"  style="margin-right: 92px;">
+                <a
+                  class="nav-link dropdown-toggle active "
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  style="font-family: 'Libre Baskerville', serif;"
+                  
+                >
+                  Register
+                </a>
+                <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" >
+                  <li >
+                    <a class="dropdown-item size" href="/user_register" style="font-family: 'Libre Baskerville', serif;">User</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/sp_register" style="font-family: 'Libre Baskerville', serif;">Service Provider</a>
+                  </li>
+                </ul>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active " href="/log_out" style="font-family: 'Libre Baskerville', serif;">logout</a>
+              </li>
+              {% endif %}
+            
+              <!-- <li class="nav-item">
+                <a class="nav-link active" id="submit" href="#" style="font-family: 'Libre Baskerville', serif;">profile</a>
+              </li> -->
+              <!-- <div class="popupContainer" id="popupMenu">
+                 <img id="image" src="./thankyou.webp" alt="">
+                    <h2> Thank You!</h2>
+                    <p> Thank you sir! Your form has been successfully submitted </p>
+                    <button id="close"> ok </button>
+             </div> -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    
+       
+      </nav>
+      {% for m in messages %}
+      <div class="alert alert-primary" role="alert">
+        {{m}}
+      </div>
+      {% endfor %}
+      
+      <h2 style="color: black ;text-align: center ;">{% block heading %}Plumber Service{% endblock heading %}</h2>
+    {% if count == 1 %}
+    {% for s in sp %}
+  <div class="container" >
+    <div class="card">
+      <img src="{{s.image.url}}" class="card-img-top" alt="Card Image">
+      <div class="card-body">
+        <h5 class="card-title">{{s.services}}</h5>
+        <p class="card-text">This is a sample card description.</p>
+        <p class="card-text">{{s.email}}</p>
+        <button class="btn btn1-book" data-mdb-ripple-duration='0' onclick="openPopup({{s.id}})">Book</button>
+      </div>
+    </div>
+  </div>
+  <div class="popup" id="{{s.id}}">
+    <div class="popup-content">
+      <h5>Popup Form</h5>
+      <button class="close-button" onclick="hideForm()">&times;</button>
+      <form action="{% url 'service_bookings' s.id %}"  method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="text" name="ph_no" class="form-control" id="phone" placeholder="Enter phone number">
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input type="text" name="address" class="form-control" id="address" placeholder="Enter address">
+        </div>
+        <div class="form-group">
+          <label for="time">Time:</label>
+          <input type="text"name="time" class="form-control" id="time" placeholder="Enter time">
+        </div>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" name="date" class="form-control" id="date" placeholder="Enter date">
+        </div>
+        <input type="submit" class="btn btn-primary" text="Submit">
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+   {% elif count == 2 %}
+
+  <div class="container">
+    <div class="row">
+        {% for s in sp %}
+      <div class="col-md-6">
+        <div class="card">
+            <img src="{{s.image.url}}" class="card-img-top" alt="Card Image">
+          <div class="card-body">
+            <h5 class="card-title">{{s.username}}</h5>
+            <p class="card-text">This is a sample card description 1.</p>
+            <p class="card-text">{{s.email}}</p>
+            <a href="#" class="btn btn-primary">Button 1</a>
+            <a href="#" class="btn btn-primary" data-mdb-ripple-duration='0' data-toggle="modal" data-target=".bd-example-modal-lg">Button</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+  {% else %}
+
+  <div class="card-container1">
+    {% for s in sp %}
+    <div class="card1" id="card">
+      <img src="{{s.image.url}}" class="card-img-top" alt="Card Image">
+      <div class="card1-body">
+        <h4 class="card1-title">{{s.username}}</h4>
+        <p class="card1-text">This is a sample card description.</p>
+        <p class="card1-text">{{s.email}}</p>
+        <p class="card1-text">{{s.id}}</p>
+        <button class="btn btn1-book" data-mdb-ripple-duration='0' onclick="openPopup({{s.id}})">Book</button>
+
+
+
+        <a href="#" class="btn btn1-book" data-mdb-ripple-duration='0' data-toggle="modal" data-target=".bd-example-modal-lg">view more</a>
+      </div>
+    </div>
+  
+    <div class="popup" id="{{s.id}}">
+      <div class="popup-content">
+        <h5>Popup Form</h5>
+        
+        <form action="{% url 'service_bookings' s.id %}"  method="post">
+          {% csrf_token %}
+          <button class="close-btn" onclick="closeForm({{s.id}})">&times;</button>
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="ph_no" class="form-control" id="phone" placeholder="Enter phone number">
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" name="address" class="form-control" id="address" placeholder="Enter address">
+          </div>
+          <div class="form-group">
+            <label for="time">Time:</label>
+            <input type="text"name="time" class="form-control" id="time" placeholder="Enter time">
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" name="date" class="form-control" id="date" placeholder="Enter date">
+          </div>
+          
+          <input type="submit" class="btn btn-primary" text="Submit">
+        </form>
+       
+      </div>
+    </div>
+    
+    {% endfor %}
+  {% endif %}
+  <!-- Button trigger modal -->
+  {% comment %} <button type="button" class="btn btn-primary btn-floating btn-lg" data-mdb-toggle="modal" data-mdb-target="#myModal">
+   <i class="fab fa-airbnb fa-lg pe-none"></i>
+ </button>
+ 
+  <!-- Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> {% endcomment %}
+
+
+<!-- for user to book and pop -->
+
+
+
+<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="card">
+        <img id="modal-image" class="{{s.image.url}}" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title" id="modal-title">hello</h5>
+          <p class="card-text" id="modal-description"></p>
+          <p class="card-text" id="modal-email"></p>
+        </div>
+      </div>
+    </div>
+ 
+
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+      function openPopup(id) {
+      var popup = document.getElementById(id);
+      popup.style.display = "block";
+    }
+    function closeForm(id) {
+      var form = document.getElementById("id");
+      popup.style.display = "none";
+    }
+    function hideForm() {
+  var profileCard = document.getElementById('profile-card');
+  var editButton = document.querySelector('.edit-button');
+
+  profileCard.style.display = 'none';
+  profileCard.style.opacity = '0';
+  editButton.style.display = 'block';
+}
+</script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

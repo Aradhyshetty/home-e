@@ -1,0 +1,478 @@
+{% comment %} {% extends 'index.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
+    <link rel="shortcut icon" href="{% static 'favicon-Event.png' %}" type="image/x-icon">
+    <title>Profile|Home-E Services</title>
+</head>
+<style>
+
+  
+
+</style>
+{% block body %}
+<body style="background-color: pink;">
+    <section style="background-color:pink;">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                 
+                  <li class="breadcrumb-item">
+                    <a class="link-body-emphasis fw-semibold text-decoration-none" href="/home">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Vendor Profile
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+      
+          <div class="row">
+            <div class="col-lg-4" >
+              <div class="card mb-4"  >
+                <div class="card-body text-center mt-5" style="margin-bottom:13%;" >
+                  {% if ven.profile %}
+                  <img src="{{ven.profile}}" alt="avatar"
+                    class="rounded-circle" style="width: 200px;">
+                    {% else %}
+                    <img src="{% static 'profile.png'%}" alt="avatar"
+                    class="rounded-circle" style="width: 150px;">
+                    {% endif %}
+                  <h5 class="my-3">{{ven.name}}</h5>
+                  <p class="text-muted mb-1">{{ven.service_type}}</p>
+                  <p class="text-muted mb-4">{{ven.address}}</p>
+                  <div class="d-flex justify-content-center mb-2">
+                    <a type="submit" role="button" class="btn btn-outline-primary ms-1" href="/vedit" data-mdb-ripple-duration="0">Edit profile</a>
+                    <button type="button"  class="btn btn-outline-primary ms-1"  data-toggle="modal" data-target="#profilepic" data-mdb-ripple-duration="0">Add Profile Photo</button>
+                    <button type="button"  class="btn btn-outline-primary ms-1"  data-toggle="modal" data-target="#" data-mdb-ripple-duration="0">View orders</button>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.email}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Phone</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.phone_no}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Service type</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.service_type}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Service places</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.service_place}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Max capacity</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.max_people}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Address</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.address}}</p>
+                    </div>
+                  </div>
+
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Description</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ven.description}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <button type="button"  class="btn btn-outline-primary ms-1"  data-toggle="modal" data-target="#descript" data-mdb-ripple-duration="0">Add description</button>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <button type="button"  class="btn btn-outline-primary ms-1"  data-toggle="modal" data-target="#addimages" data-mdb-ripple-duration="0">Add Images</button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              
+
+              
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0"> Photos</p>
+              <p class="mb-0" style="margin-right:27px"><a  class="text-muted">Show all</a></p>
+            </div>
+            <div class="row">
+              {% if img %}
+              {% for i in img %}
+              {% if forloop.counter < 4 %}
+              <div class="col-md-4">
+                <img src="{{i.images.url}}"
+                  alt="image 1" class="w-100 rounded-3 mb-3">
+              </div>
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="descript" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <form action="/descript" method="post" >
+              {% csrf_token %}
+            <div class="modal-body" style="background-color:pink">
+              <textarea name="descript" rows="10" cols="50" placeholder="Type here"></textarea>
+            </div>
+          
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" data-mdb-ripple-duration="0">Close</button>
+              <button type="submit" class="btn btn-primary" data-mdb-ripple-duration="0">Save</button></form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="profilepic" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <form action="/profilepic" method="post" enctype="multipart/form-data" >
+              {% csrf_token %}
+            <div class="modal-body" style="background-color:pink;border-radius: 5px;">
+              <div class="file-input-wrapper">
+              <button class="custom-file-button">Choose File</button><p  id="selectedFileName"></p>
+              
+              <input type="file" name="pic" accept=".jpg, .png, image/jpeg, image/png" class="custom-file-input" id="fileInput" />
+              </div>
+            </div>
+          <style>
+            .custom-file-input {
+              display: inline;
+            }
+            
+            /* Style the wrapper */
+            .file-input-wrapper {
+              position: relative;
+              display: inline-block;
+            }
+            
+            /* Style the custom button */
+            .custom-file-button {
+              background-color: #4CAF50;
+              color: white;
+              padding: 10px 15px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            
+            /* Position the file input on top of the button */
+            .custom-file-input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              cursor: pointer;
+            }
+            
+            /* Add hover effect */
+            .custom-file-button:hover {
+              background-color: #45a049;
+            }
+            
+            /* Add focus effect */
+            
+            
+          </style>
+          <script>
+            var fileInput = document.getElementById('fileInput');
+            var customButton = document.querySelector('.custom-file-button');
+
+            customButton.addEventListener('click', () => {
+            fileInput.click();
+            }); 
+
+
+          fileInput.addEventListener('change', () => {
+          var file = fileInput.files[0];
+          if (file) {
+          selectedFileName.textContent = file.name;
+          } else {
+          selectedFileName.textContent = 'No file selected';
+          }
+            });
+          </script>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" data-mdb-ripple-duration="0">Close</button>
+              <button type="submit" class="btn btn-primary" data-mdb-ripple-duration="0">Save</button></form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="addimages" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <form action="/add_vimage" method="post" enctype="multipart/form-data" >
+              {% csrf_token %}
+            <div class="modal-body" style="background-color:pink;border-radius: 5px;">
+              <div class="file-input-wrapper">
+              <button class="custom-file-button">Choose Files</button><p  id="selectedFileName"></p>
+              
+              <input type="file" name="pics" accept=".jpg, .png, image/jpeg, image/png" class="custom-file-input" id="fileInput" multiple />
+              </div>
+            </div>
+          <style>
+            .custom-file-input {
+              display: inline;
+            }
+            
+            /* Style the wrapper */
+            .file-input-wrapper {
+              position: relative;
+              display: inline-block;
+            }
+            
+            /* Style the custom button */
+            .custom-file-button {
+              background-color: #4CAF50;
+              color: white;
+              padding: 10px 15px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            
+            /* Position the file input on top of the button */
+            .custom-file-input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              cursor: pointer;
+            }
+            
+            /* Add hover effect */
+            .custom-file-button:hover {
+              background-color: #45a049;
+            }
+            
+            /* Add focus effect */
+            
+            
+          </style>
+          <script>
+            var fileInput = document.getElementById('fileInput');
+            var customButton = document.querySelector('.custom-file-button');
+
+            customButton.addEventListener('click', () => {
+            fileInput.click();
+            }); 
+
+
+          fileInput.addEventListener('change', () => {
+          var file = fileInput.files[0];
+          if (file) {
+          selectedFileName.textContent = file.name;
+          } else {
+          selectedFileName.textContent = 'No file selected';
+          }
+            });
+          </script>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" data-mdb-ripple-duration="0">Close</button>
+              <button type="submit" class="btn btn-primary" data-mdb-ripple-duration="0">Save</button></form>
+            </div>
+          </div>
+        </div>
+
+      </div>    
+        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      
+      {% endblock body %}
+</html> {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="shortcut icon" href="{% static 'favicon-Event.png' %}" type="image/x-icon">
+    <title>Profile|EventWithUs</title>
+</head>
+<body style="background-color:rgb(229, 255, 251)">
+    <style>
+        .mb-4 {
+  margin-bottom: 3.5rem !important;
+}
+.ht
+{
+    height: 78%;
+}
+    </style>
+    <section style="rgb(229, 255, 251);margin-top: 2%;">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                     
+                      <li class="breadcrumb-item">
+                        <a class="link-body-emphasis fw-semibold text-decoration-none" href="/home">Home</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        User Profile
+                      </li>
+                    </ol>
+                  </nav>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src="{% static 'profile.png' %}" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <h5 class="my-3">{{user.first_name}}</h5>
+                  
+                  <p class="text-muted mb-4">{{user.address}}</p>
+                  <div class="d-flex justify-content-center mb-2">
+                    <a type="submit" role="button" class="btn btn-outline-primary ms-1" href="/view_wishlist">View Wishlist</a>
+                    <a type="submit" role="button" class="btn btn-outline-primary ms-1" href="">View Bookings</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4 ht">
+                <div class="card-body m-5">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{user.first_name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{user.email}}</p>
+                    </div>
+                  </div>
+                  <hr>
+      
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{user.phone_no}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Address</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{user.address}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+               
+                </div>
+                <div class="col-md-6">
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>

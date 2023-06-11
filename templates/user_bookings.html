@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% block nav_service %}
+<li class="nav-item">
+    <a class="nav-link active " href="/log_out" style="font-family: 'Libre Baskerville', serif;">logout</a>
+  </li>
+{% endblock nav_service %}
+{% block nav_item  %}
+ <li class="nav-item">
+     <a class="nav-link active" id="submit" href="user_profile" style="font-family: 'Libre Baskerville', serif;">profile</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" id="submit" href="user_bookings" style="font-family: 'Libre Baskerville', serif;">bookings</a>
+</li>
+{% endblock nav_item %}
+{% block body %}
+
+<div class="container table-responsive py-5"> 
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">service provider name</th>
+          <th scope="col">service</th>
+          <th scope="col">date</th>
+          <th scope="col">time</th>
+          <th scope="col">status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for b1  in booking %}<td>Mark</td>
+          
+        <tr>
+          <th scope="row">1</th>
+          <td>{{b1.vendor_name}}</td>
+          <td>{{b1.service_type}}</td>
+          <td>{{b1.user_date}}</td>
+          <td>{{b1.user_time}}</td>
+          <td>{{b1.status}}</td>
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    
+{% endblock body %}
